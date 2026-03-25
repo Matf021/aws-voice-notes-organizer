@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Voice Notes</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .controls {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .control-box {
+      flex: 1;
+      background-color: #fff;
+      padding: 1.5rem;
+      text-align: center;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .control-box button {
+      background-color: black;
+      color: white;
+      border: none;
+      padding: 1rem;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .filter-bar {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .filter-bar input,
+    .filter-bar select {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      flex: 1;
+    }
+
+    .tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .tabs button {
+      background-color: #eee;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .note-card {
+      background-color: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+      margin-bottom: 1rem;
+    }
+
+    .note-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .note-meta {
+      color: #777;
+      font-size: 0.875rem;
+      margin-top: 0.5rem;
+    }
+
+    .note-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+      justify-content: flex-end;
+    }
+
+    .note-actions button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .badge {
+      background-color: #eee;
+      padding: 0.2rem 0.5rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Voice Notes</h1>
+
+  <div class="controls">
+    <div class="control-box">
+      <label for="audioUpload" style="cursor:pointer; display:block;">
+        <span style="display:block; font-size:2rem;">🎤</span>
+        <div>Upload Audio</div>
+        <input id="audioUpload" type="file" accept="audio/*" style="display:none;" onchange="handleUploadAndAnalyze(this.files[0])">
+      </label>
+    </div>
+  </div>
+
+  <div class="filter-bar">
+    <input type="text" placeholder="Search notes..." />
+    <select>
+      <option>All Categories</option>
+      <option>Work</option>
+      <option>Personal</option>
+      <option>Hobby</option>
+    </select>
+  </div>
+
+  <div class="tabs">
+    <button>All Notes</button>
+    <button>Recent</button>
+    <button>Favorites</button>
+  </div>
+
+  <div class="note-card">
+    <div class="note-header">
+      <strong>Meeting with Marketing Team</strong>
+      <span class="badge">Work</span>
+    </div>
+    <p>Discussed Q2 campaign strategy. Need to follow up with Sarah about budget allocation.</p>
+    <div class="note-meta">3/8/2025 · 2:45</div>
+    <div class="note-actions">
+      <button title="Play">▶</button>
+      <button title="Edit">✎</button>
+      <button title="Delete">🗑</button>
+    </div>
+  </div>
+
+  <div class="note-card">
+    <div class="note-header">
+      <strong>Shopping List Ideas</strong>
+      <span class="badge">Personal</span>
+    </div>
+    <p>Remember to buy: milk, eggs, bread, and vegetables for the weekend dinner.</p>
+    <div class="note-meta">3/9/2025 · 0:58</div>
+    <div class="note-actions">
+      <button title="Play">▶</button>
+      <button title="Edit">✎</button>
+      <button title="Delete">🗑</button>
+    </div>
+  </div>
+
+  <div class="note-card">
+    <div class="note-header">
+      <strong>Book Club Discussion Points</strong>
+      <span class="badge">Hobby</span>
+    </div>
+    <p>Main themes to discuss: character development, plot twists, and author's writing style.</p>
+    <div class="note-meta">3/7/2025 · 3:22</div>
+    <div class="note-actions">
+      <button title="Play">▶</button>
+      <button title="Edit">✎</button>
+      <button title="Delete">🗑</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
