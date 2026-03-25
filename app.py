@@ -1,5 +1,5 @@
 from chalice import Chalice
-from chalicelib import storage_service, transcription_service, comprehend_service
+from services import storage_service, transcription_service, comprehend_service
 import base64
 import json
 import os
