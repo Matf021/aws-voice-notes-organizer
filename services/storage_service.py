@@ -11,10 +11,6 @@ class StorageService:
         self.client = boto3.client('s3')
 
     def upload_audio_file(self, file_bytes: bytes, user_id: str, extension: str = ".wav") -> Dict[str, str]:
-        """
-        Upload an audio file to the S3 bucket under a user-specific folder.
-        Returns metadata including file ID and public URL.
-        """
         file_id = f"{user_id}/{uuid.uuid4()}{extension}"
 
         try:
@@ -34,9 +30,6 @@ class StorageService:
             raise
 
     def get_file_url(self, file_id: str) -> str:
-        """
-        Generate a pre-signed URL to access the file (optional, for private access).
-        """
         try:
             url = self.client.generate_presigned_url(
                 'get_object',
