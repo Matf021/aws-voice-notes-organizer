@@ -9,7 +9,7 @@ app = Chalice(app_name='VoiceNotesApp')
 app.debug = True
 
 # Environment configuration
-BUCKET_NAME = "notesappcent.aws.ai"
+BUCKET_NAME = 
 
 # Service initialization
 storage = storage_service.StorageService(BUCKET_NAME)
@@ -19,7 +19,6 @@ comprehender = comprehend_service.ComprehendService()
 
 @app.route('/upload-audio', methods=['POST'], cors=True)
 def upload_audio():
-    """Handles base64 audio upload and begins transcription."""
     request_data = json.loads(app.current_request.raw_body)
     file_bytes = base64.b64decode(request_data['filebytes'])
     user_id = request_data.get('userId', 'anonymous')
@@ -38,7 +37,6 @@ def upload_audio():
 
 @app.route('/transcription/{job_name}', methods=['GET'], cors=True)
 def get_transcription(job_name):
-    """Checks status of transcription job and returns transcript URL if ready."""
     job_response = transcriber.wait_for_transcription(job_name)
     status = job_response['TranscriptionJob']['TranscriptionJobStatus']
 
@@ -51,7 +49,6 @@ def get_transcription(job_name):
 
 @app.route('/analyze-text', methods=['POST'], cors=True)
 def analyze_text():
-    """Analyzes text using AWS Comprehend for sentiment and key phrases only."""
     request_data = json.loads(app.current_request.raw_body)
     text = request_data['text']
 
